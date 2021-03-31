@@ -1,0 +1,8 @@
+.navbar{
+    height: 100%;
+    background: rgb(5,51,151);
+    background: linear-gradient(180deg, rgba(5,51,151,1) 0%, rgba(15,15,151,1) 15%, rgba(0,130,255,1) 100%);
+    padding: 25px;
+    min-height: calc(100vh - 90px);
+    box-shadow: 0 0 3px #333;
+}

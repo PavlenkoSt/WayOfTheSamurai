@@ -1,0 +1,40 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pagBtn{
+    margin: 0 5px;
+    border: none;
+    background-color: rgb(158, 158, 158);
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    font-weight: 700;
+    outline: none;
+    border-radius: 5px;
+    min-width: 35px;
+    transition: all ease .2s;
+}
+.pagBtn:hover{
+    color: rgb(202, 202, 202);
+    background-color: rgb(85, 85, 85);
+}
+.active{
+    color: #fff !important;
+    background-color: #333 !important; 
+}
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(212, 212, 212);
+    color: #333;
+    transition: all ease .2s;
+    border: 1px solid #333;
+}
+
+.btn:hover{
+    background-color: #fff;
+}

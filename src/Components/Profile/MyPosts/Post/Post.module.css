@@ -1,0 +1,21 @@
+.post{
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    margin-bottom: 30px;
+}
+
+.avatar_sm{
+    height: 75px;
+    display: flex;  
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text{
+    display: grid;
+    padding-top: 15px;
+    padding-left: 20px;
+    font-size: 20px;
+    color: #333;
+}

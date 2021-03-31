@@ -1,0 +1,13 @@
+.body{
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+}
+
+h2{
+    padding: 0 15px;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 15px;
+}

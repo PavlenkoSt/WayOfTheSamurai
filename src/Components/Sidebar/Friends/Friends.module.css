@@ -1,0 +1,15 @@
+.header{
+    text-transform: uppercase;
+    color: rgb(200, 200, 200);
+    font-size: 26px;
+    font-weight: 700;
+    cursor: default;
+    margin-bottom: 30px;
+}
+
+.friends{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-content: center;
+}

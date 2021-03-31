@@ -1,0 +1,16 @@
+.a{
+    color: #333;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    transition: all ease .2s;
+    font-weight: 700;
+}
+
+.a:hover{
+    color: rgb(0, 0, 163);
+}
+.a.active{
+    color: rgb(0, 0, 180);
+}
