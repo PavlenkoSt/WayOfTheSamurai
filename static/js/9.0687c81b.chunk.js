@@ -1,0 +1,2 @@
+(this["webpackJsonpway-of-the-samurai"]=this["webpackJsonpway-of-the-samurai"]||[]).push([[9],{316:function(t,s,a){},322:function(t,s,a){"use strict";a.r(s);a(316);var e=a(2);s.default=function(){return Object(e.jsx)("div",{children:"News"})}}}]);
+//# sourceMappingURL=9.0687c81b.chunk.js.map
