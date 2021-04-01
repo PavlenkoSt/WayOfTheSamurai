@@ -9,8 +9,9 @@ const MyProfile = props => {
     }
     return (
         <div className={s.profile}>
-            <Avatar img={props.profile.photos.large}/>
+            <Avatar isOwner={props.isOwner} img={props.profile.photos.large} setPhoto={props.setPhoto}/>
             <Info 
+                isOwner={props.isOwner}
                 name={props.profile.fullName} 
                 about={props.profile.aboutMe}
                 work={props.profile.lookingForAJob}

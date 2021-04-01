@@ -24,10 +24,10 @@ const Status = React.memo( props => {
     <div className={s.status}>
       {!editMode && (
         <span
-          title="Кликните дважды, чтобы изменить статус"
-          onDoubleClick={activeEditMode}
+          title={ (props.isOwner && "Кликните дважды, чтобы изменить статус") || null }
+          onDoubleClick={ props.isOwner ? activeEditMode : null}
         >
-          {status || "Кликните дважды, чтобы установить статус"}
+          {status || (props.isOwner && "Кликните дважды, чтобы установить статус")}
         </span>
       )}
       {editMode && (

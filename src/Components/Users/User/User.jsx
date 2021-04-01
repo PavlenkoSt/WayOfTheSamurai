@@ -14,6 +14,7 @@ const User = props => {
                 followUser={props.followUser}
             />
             <RightSide 
+                id={props.id}
                 name={props.name} 
                 status={props.status}
             />

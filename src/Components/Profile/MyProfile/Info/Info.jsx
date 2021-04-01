@@ -5,7 +5,7 @@ const Info = props => {
     return (
         <div className={s.info}>
             <div className={s.name}>{ props.name }</div>
-            <Status status={props.status} updateStatus={props.updateStatus}/>
+            <Status isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>
             <ul>
                 <li>Обо мне: <span className={s.point}>{props.about}</span> </li>
                 <li>Ищу работу: <span className={s.point}>{props.work ? 'Да' : 'Нет'}</span> </li>

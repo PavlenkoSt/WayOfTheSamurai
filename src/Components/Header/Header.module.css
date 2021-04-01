@@ -12,10 +12,19 @@
 .logo{
   display: inline-flex;
   margin-left: 20px;
+  overflow: hidden;
 }
 
 .logo img{
-  height: 60px;
+  display: flex;
+  justify-content: center;
+  width: 70px;
+  box-shadow: 0 0 3px #333;
+}
+
+.img{
+  border-radius: 50%;
+  max-width: 100%;
 }
 
 .login{

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MyProfile from './MyProfile'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router-dom'
-import { getProfile, getUserStatus, updateStatus } from '../../../Redux/profileReducer'
+import { getProfile, getUserStatus, updateStatus, setPhoto } from '../../../Redux/profileReducer'
 import { compose } from 'redux'
 import { authUser } from '../../../Redux/authReducer'
 
@@ -18,7 +18,13 @@ const MyProfileContainer = React.memo( props => {
         return <Redirect to='/login'/>
     }
     return (
-        <MyProfile {...props} profile={props.profile} updateStatus={props.updateStatus} />
+        <MyProfile 
+            setPhoto={props.setPhoto} 
+            isOwner={!props.match.params.userId} 
+            {...props} 
+            profile={props.profile} 
+            updateStatus={props.updateStatus} 
+        />
     )
 })
 
@@ -26,11 +32,11 @@ const MapStateToProps = state => {
     return {
         profile: state.profilePage.userProfile,
         myId: state.auth.id,
-        status: state.profilePage.status
+        status: state.profilePage.status,
     }
 }
 
-const MapDispatchToProps = { authUser, getProfile, getUserStatus, updateStatus }
+const MapDispatchToProps = { authUser, getProfile, getUserStatus, updateStatus, setPhoto }
 
 export default compose(
     connect(MapStateToProps, MapDispatchToProps),

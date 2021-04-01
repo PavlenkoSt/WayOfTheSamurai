@@ -4,11 +4,14 @@ const ADD_POST = 'ADD-POST'
 const REMOVE_POST = 'REMOVE_POST'
 const GET_USER_PROFILE = 'GET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
+const SET_PHOTO = 'SET_PHOTO'
 
 export const addNewPost = text => ({ type: ADD_POST, text })
 export const removePost = id => ({ type: REMOVE_POST, id})
 export const getUserProfile = userProfile => ({ type: GET_USER_PROFILE, userProfile})
 export const setStatus = status => ({ type: SET_STATUS, status })
+export const setPhotoSuccess = photos => ({ type: SET_PHOTO, photos })
+
 
 const initialValue = {
     posts: [
@@ -48,6 +51,12 @@ const profileReducer = (state = initialValue, action) => {
                 status: action.status
             }
         }
+        case SET_PHOTO: {
+            return {
+                ...state,
+                userProfile: { ...state.userProfile , photos: action.photos} 
+            }
+        }
         default:
             return state
     }
@@ -69,6 +78,14 @@ export const updateStatus = status => async dispatch => {
     const response = await DAL.profile.updateStatus(status)
     if(response.data.resultCode === 0){
         dispatch(setStatus(status))
+    }
+}
+
+export const setPhoto = photo => async dispatch => {
+    const response = await DAL.profile.setPhoto(photo)
+    debugger
+    if(response.data.resultCode === 0){
+        dispatch(setPhotoSuccess(response.data.data.photos))
     }
 }
 
