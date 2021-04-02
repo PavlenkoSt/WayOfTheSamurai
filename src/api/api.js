@@ -14,8 +14,8 @@ const DAL = {
             return instance.get(`auth/me`)
                 .then(responce => responce.data)
         },
-        login(email, password, isRemember){
-            return instance.post(`auth/login`, { email, password, isRemember })
+        login(email, password, isRemember = false, captcha = null){
+            return instance.post(`auth/login`, { email, password, isRemember, captcha })
                 .then(responce => responce.data)
         },
         logout(){
@@ -57,6 +57,14 @@ const DAL = {
                     'Content-Type': `multipart/form-data`
                 }
             })
+        },
+        editProfileInfo(profileInfo){
+            return instance.put(`/profile`, profileInfo)
+        }
+    },
+    security: {
+        getCaptchaUrl(){
+            return instance.get(`security/get-captcha-url`)
         }
     }
 }

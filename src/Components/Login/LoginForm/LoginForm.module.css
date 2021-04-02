@@ -32,3 +32,9 @@
 .btn:hover{
     background-color: rgb(71, 97, 247);
 }
+
+.captcha{
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

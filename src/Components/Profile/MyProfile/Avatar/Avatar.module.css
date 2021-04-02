@@ -3,9 +3,11 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    align-items: center;
 }
 .avatar img{
     object-fit: cover;
+    max-height: 100%;
 }
 .input{
     display: none;

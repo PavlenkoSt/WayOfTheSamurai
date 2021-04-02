@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import s from './Pagination.module.css'
+import classnames from 'classnames'
 
 const Pagination = props => {
     const pagesCount = Math.ceil(props.totalCount / props.countOnPage)
@@ -8,7 +9,10 @@ const Pagination = props => {
         paginations.push(<button
             key={i}
             onClick={() => { props.onPaginationChange(i) }}
-            className={props.currentPage === i ? s.active + ' ' + s.pagBtn : s.pagBtn} >{i}</button>);
+            className={classnames(
+                {[s.active]: props.currentPage === i}, s.pagBtn
+                )}
+             >{i}</button>);
     }
     
     const portionsSize = props.portionsSize

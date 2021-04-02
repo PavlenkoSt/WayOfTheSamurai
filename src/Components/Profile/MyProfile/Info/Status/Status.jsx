@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import s from "./Status.module.css";
 
-const Status = React.memo( props => {
+const Status = props => {
   const [editMode, changeEditMode] = useState(false);
   const [status, changeStatus] = useState(props.status);
 
@@ -14,7 +14,7 @@ const Status = React.memo( props => {
   };
   const unactiveEditMode = () => {
     changeEditMode(false);
-    props.updateStatus(status);
+    props.updateStatus(status, props.myId);
   };
   const inputChange = (e) => {
     changeStatus(e.target.value);
@@ -41,6 +41,6 @@ const Status = React.memo( props => {
       )}
     </div>
   );
-});
+}
 
 export default Status;

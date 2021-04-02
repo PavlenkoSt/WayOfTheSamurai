@@ -1,11 +1,25 @@
 .info{
     padding: 0 20px;
-    display: grid;
 }
 
-.info ul{
-    display: grid;
-    gap: 10px;
+.info ul li{
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-bottom: 15px;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(212, 212, 212);
+    color: #333;
+    transition: all ease .2s;
+    border: 1px solid #333;
+    font-size: 12px;
+    padding: 5px;
+}
+
+.btn:hover{
+    background-color: #fff;
 }
 
 .name{
@@ -29,4 +43,8 @@
 }
 .link:hover{
     color: rgb(61, 123, 255);
+}
+
+.contacts{
+    margin-top: 10px;
 }

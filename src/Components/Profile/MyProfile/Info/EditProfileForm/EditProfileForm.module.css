@@ -1,0 +1,66 @@
+.item{
+    margin-bottom: 10px;
+}
+
+.input{
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 300px;
+    padding: 5px 10px;
+    color: #333;
+    outline: none;
+    border: none;
+}
+
+.textarea{
+    font-family: 'Ubuntu Mono', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 300px;
+    padding: 5px 10px;
+    color: #333;
+    outline: none;
+    border: none;
+    height: 80px;
+    resize: none;
+}
+
+.checkbox{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form{
+    border: 1px solid #333;
+    display: inline-block;
+    padding: 20px;
+    box-shadow: 0 0 3px #333;
+}
+
+.btnsArea{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn{
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(212, 212, 212);
+    color: #333;
+    transition: all ease .2s;
+    border: 1px solid #333;
+    font-size: 12px;
+    padding: 5px;
+    min-width: 80px;
+}
+
+
+.btn:hover{
+    background-color: #fff; 
+}

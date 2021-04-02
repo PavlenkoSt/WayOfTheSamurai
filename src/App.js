@@ -1,6 +1,6 @@
 import './App.css'
 import store from './Redux/reduxStore'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -12,6 +12,7 @@ import withSuspense from './hoc/withSuspense'
 import HeaderContainer from './Components/Header/HeaderContainer'
 import SidebarContainer from './Components/Sidebar/SidebarContainer'
 import Preloader from './Components/common/Preloader/Preloader'
+import Modal from './Components/common/Modal/Modal'
 
 const Main = React.lazy(() => import('./Components/Main/Main'))
 const Profile = React.lazy(() => import('./Components/Profile/Profile'))
@@ -23,9 +24,16 @@ const Settings = React.lazy(() => import('./Components/Settings/Settings'))
 const Login = React.lazy(() => import('./Components/Login/Login'))
  
 const App = props => {
+
+  const [errorStatus, errorStatusChange] = useState(false)
+
   useEffect( () => {
     props.initializeApp()
     }, [props.initialized])
+
+  useEffect( () => {
+    window.addEventListener("unhandledrejection", () => errorStatusChange(true))
+  }, [])
 
     if(!props.initialized){
       return <Preloader/>
@@ -34,6 +42,7 @@ const App = props => {
       <div className="app-wrapper">
         <HeaderContainer />
         <div className="container">
+          { errorStatus && <Modal errorStatusChange={errorStatusChange} errorMessage={'Неизвестная ошибка!'}/> }
           <div className="main">
             <SidebarContainer />
             <Route path="/" exact render={ withSuspense(Main) } />

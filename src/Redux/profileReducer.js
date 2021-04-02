@@ -1,4 +1,6 @@
+import { stopSubmit } from 'redux-form'
 import DAL from '../api/api'
+
 
 const ADD_POST = 'ADD-POST'
 const REMOVE_POST = 'REMOVE_POST'
@@ -74,18 +76,35 @@ export const getUserStatus = (userId, myId) => dispatch => {
         : DAL.profile.getStatus(myId).then(status => dispatch(setStatus(status)))
 }   
 
-export const updateStatus = status => async dispatch => {
-    const response = await DAL.profile.updateStatus(status)
-    if(response.data.resultCode === 0){
-        dispatch(setStatus(status))
+export const updateStatus = (status, myId) => async (dispatch, getState) => {
+    try{
+        const response = await DAL.profile.updateStatus(status)
+        if(response.data.resultCode === 0){
+            dispatch(setStatus(status))
+        }
+    }catch(err){
+        if(myId){
+            DAL.profile.getStatus(myId).then(oldStatus => dispatch(setStatus(oldStatus)))
+        }
     }
 }
 
 export const setPhoto = photo => async dispatch => {
     const response = await DAL.profile.setPhoto(photo)
-    debugger
     if(response.data.resultCode === 0){
         dispatch(setPhotoSuccess(response.data.data.photos))
+    }
+}
+
+export const editProfileInfo = (profileInfo, myId) => async dispatch => {
+    const response = await DAL.profile.editProfileInfo(profileInfo)
+    const id = myId
+    if(response.data.resultCode === 0){
+        DAL.profile.getProfile(id).then(data => dispatch(getUserProfile(data)))
+    }else{
+        const errPlace = response.data.messages[0].match(/\-\>(.+)\)/)
+        dispatch(stopSubmit('profile-info', { contacts: { [errPlace[1].toLowerCase()]: response.data.messages[0]}}))
+        return Promise.reject()
     }
 }
 

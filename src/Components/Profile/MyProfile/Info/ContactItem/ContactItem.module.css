@@ -1,0 +1,12 @@
+.li{
+    padding-left: 15px;
+}
+
+.link{
+    color: rgb(1, 1, 255);
+    transition: all ease .2s;
+}
+
+.link:hover{
+    color: rgb(57, 57, 250);
+}
