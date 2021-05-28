@@ -4,10 +4,17 @@ import { getProfile, profileActions } from "./profileReducer"
 jest.mock('../api/api')
 const mockedDAL = DAL as jest.Mocked<typeof DAL>
 
+const dispatchMock = jest.fn()
+const getStateMock = jest.fn()
 
-it('thunk should be return profile', async () => {
+beforeEach(() => {
+    dispatchMock.mockClear()
+    getStateMock.mockClear()
+})
+
+
+it('getProfile thunk', async () => {
     const thunk = getProfile(0, '2')
-    const dispatchMock = jest.fn()
 
     const result = {
         resultCode: 0,
@@ -20,7 +27,7 @@ it('thunk should be return profile', async () => {
     //@ts-ignore
     mockedDAL.profile.getProfile.mockReturnValue(Promise.resolve(result))
 
-    await thunk(dispatchMock, jest.fn(), {})
+    await thunk(dispatchMock, getStateMock, {})
 
     expect(dispatchMock).toBeCalledTimes(1)
     expect(dispatchMock).toHaveBeenCalledWith(profileActions.getUserProfile(result))
