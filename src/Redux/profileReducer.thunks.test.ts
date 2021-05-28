@@ -1,5 +1,5 @@
 import DAL from "../api/api"
-import { getProfile, profileActions } from "./profileReducer"
+import { getProfile, getUserStatus, profileActions } from "./profileReducer"
 
 jest.mock('../api/api')
 const mockedDAL = DAL as jest.Mocked<typeof DAL>
@@ -32,3 +32,18 @@ it('getProfile thunk', async () => {
     expect(dispatchMock).toBeCalledTimes(1)
     expect(dispatchMock).toHaveBeenCalledWith(profileActions.getUserProfile(result))
 })
+
+it('getUserStatus thunk', async () => {
+    const thunk = getUserStatus(0, '2')
+
+    const result = 'some status'
+
+    //@ts-ignore
+    mockedDAL.profile.getStatus.mockReturnValue(Promise.resolve(result))
+
+    await thunk(dispatchMock, getStateMock, {})
+
+    expect(dispatchMock).toBeCalledTimes(1)
+    expect(dispatchMock).toHaveBeenCalledWith(profileActions.setStatus(result))
+})
+
