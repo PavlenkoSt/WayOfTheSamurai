@@ -3,7 +3,7 @@ import store, { AppStateType } from './Redux/reduxStore'
 import React, { ComponentType, useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { initializeApp } from './Redux/appReducer'
@@ -13,6 +13,8 @@ import HeaderContainer from './Components/Header/HeaderContainer'
 import SidebarContainer from './Components/Sidebar/SidebarContainer'
 import Preloader from './Components/common/Preloader/Preloader'
 import Modal from './Components/common/Modal/Modal'
+import { initializedSelector } from './Redux/appSelectors'
+
 
 const Main = React.lazy(():any => import('./Components/Main/Main'))
 const Profile = React.lazy(():any => import('./Components/Profile/Profile'))
@@ -23,10 +25,6 @@ const Musics = React.lazy(():any => import('./Components/Musics/Musics'))
 const Settings = React.lazy(():any => import('./Components/Settings/Settings'))
 const Login = React.lazy(():any => import('./Components/Login/Login'))
 
-type MapStatePropstype = {
-  initialized: boolean
-}
-
 type MapDispatchProps = {
   initializeApp: () => void
 }
@@ -34,10 +32,12 @@ type MapDispatchProps = {
 const App = (props: any) => {
 
   const [errorStatus, errorStatusChange] = useState(false)
+  
+  const initialized = useSelector(initializedSelector)
 
   useEffect( () => {
     props.initializeApp()
-  }, [props.initialized])
+  }, [initialized])
 
   useEffect( () => {
     window.addEventListener("unhandledrejection", () => errorStatusChange(true))
@@ -54,7 +54,7 @@ const App = (props: any) => {
           <div className="main">
             <SidebarContainer />
             <Route path="/" exact render={ withSuspense(Main) } />
-            <Route path="/profile/:userId?" render={  withSuspense(Profile) } />
+            <Route path="/profile/:userId?" render={ withSuspense(Profile) } />
             <Route path="/dialogs" render={  withSuspense(Dialogs) } />
             <Route path="/users" render={  withSuspense(UsersContainer) } />
             <Route path="/news" render={ withSuspense(News) } />
@@ -67,11 +67,9 @@ const App = (props: any) => {
     );
 }
 
-const mapStateToProps = (state: AppStateType) => ({ initialized: state.app.initialized })
-
 const AppWithRouter: any = compose<ComponentType>(
   withRouter,
-  connect<MapStatePropstype, MapDispatchProps, {}, AppStateType>(mapStateToProps, { initializeApp })
+  connect<null, MapDispatchProps, {}, AppStateType>(null, { initializeApp })
 )(App)
 
 export default () => {
