@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react'
+import { FilteredOptionsType } from '../../Redux/usersReducer';
 import { GetUsersType, UserType } from '../../types/types';
 import Users from './Users'
 
@@ -15,6 +16,7 @@ type UsersProps = {
   getUsers: (countOnPage: number, currentPage: number) => Promise<GetUsersType>
   setTotalCount: (totalCount: number) => void
   setCurrentPage: (currentPage: number) => void
+  setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
 }
 
 const UsersAPI: FC<UsersProps> = (props) => {
@@ -40,6 +42,7 @@ const UsersAPI: FC<UsersProps> = (props) => {
       followingProgress={props.followingProgress}
       unfollowUser={props.unfollowUser}
       followUser={props.followUser}
+      setFilteredOptions={props.setFilteredOptions}
     />
   );
 };

@@ -12,6 +12,7 @@ const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const FETCHING_LOADER_TOGGLE = 'FETCHING_LOADER_TOGGLE'
 const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS'
+const SET_FILTERED_OPTIONS = 'SET_FILTERED_OPTIONS'
 
 export const usersActions = {
     follow: (id: number) => ({ type: FOLLOW, id } as const),
@@ -20,7 +21,8 @@ export const usersActions = {
     setTotalCount:  (totalCount: number) => ({ type: SET_TOTAL_COUNT, totalCount } as const),
     setCurrentPage: (currentPage: number) => ({ type: SET_CURRENT_PAGE, currentPage } as const),
     changeLoaderVisible: (isFetching: boolean) => ({ type: FETCHING_LOADER_TOGGLE, isFetching } as const),
-    followingProgressChange: (isFetching: boolean, userId: number) => ({ type: FOLLOWING_PROGRESS, isFetching, userId } as const)
+    followingProgressChange: (isFetching: boolean, userId: number) => ({ type: FOLLOWING_PROGRESS, isFetching, userId } as const),
+    setFilteredOptions: (filteredOptions: FilteredOptionsType) => ({ type: SET_FILTERED_OPTIONS, filteredOptions } as const)
 }
 
 type UsersType = {
@@ -31,6 +33,10 @@ type UsersType = {
     followed: boolean
 }
 
+export type FilteredOptionsType = {
+    term: string
+}
+
 const initialValue = {
     users: [] as Array<UsersType> ,
     usersCountOnPage: 10,
@@ -38,7 +44,10 @@ const initialValue = {
     currentPage: 1,
     portionsSize: 10,
     isFetching: true,
-    followingProgress: [] as Array<any> // array of urers ids
+    followingProgress: [] as Array<any>, // array of urers ids
+    filteredOptions: {
+        term: ''
+    }
 }
 
 type InitialValueType = typeof initialValue
@@ -86,7 +95,11 @@ const usersReducer = (state = initialValue, action: ActionType): InitialValueTyp
             return action.isFetching 
                 ? { ...state, followingProgress: [...state.followingProgress, action.userId]} 
                 : { ...state, followingProgress: [state.followingProgress.filter((id: number) => id !== action.userId)]}
-
+        case SET_FILTERED_OPTIONS: 
+            return {
+                ...state, 
+                filteredOptions: action.filteredOptions
+            }
         default:
             return state
     }

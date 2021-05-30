@@ -6,6 +6,7 @@ import { compose } from "redux"
 import { AppStateType } from "../../Redux/reduxStore"
 import { ProfileType } from "../../types/types"
 import { ComponentType } from "react"
+import { FilteredOptionsType } from '../../Redux/usersReducer'
 
 type MapStatePropsType = {
     users: Array<ProfileType>
@@ -23,6 +24,7 @@ type MapDispatchPropsType = {
     getUsers: (countOnPage: number, currentPage: number) => any
     unfollowUser: (id: number) => void
     followUser: (id: number) => void
+    setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
 }
 
 const mapStateToProps = (state: AppStateType) => {
@@ -40,6 +42,7 @@ const mapStateToProps = (state: AppStateType) => {
 const mapDispatchToProps = { 
     setTotalCount: usersActions.setTotalCount,
     setCurrentPage: usersActions.setCurrentPage, 
+    setFilteredOptions: usersActions.setFilteredOptions,
     getUsers, 
     unfollowUser, 
     followUser 
