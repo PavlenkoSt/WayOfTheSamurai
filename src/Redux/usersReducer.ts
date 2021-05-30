@@ -1,9 +1,9 @@
-import { ActionTypes } from './reduxStore';
-import { PhotosForProfileType } from './../types/types';
+import { ActionTypes } from './reduxStore'
+import { PhotosForProfileType } from './../types/types'
 import DAL from '../api/api'
 import { changeFollowedStatus } from '../utilts/helpers/helpers'
-import { ThunkAction } from 'redux-thunk';
-import { AnyAction, Store } from 'redux';
+import { ThunkAction } from 'redux-thunk'
+import { AnyAction, Store } from 'redux'
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -34,7 +34,8 @@ type UsersType = {
 }
 
 export type FilteredOptionsType = {
-    term: string
+    term: string,
+    friend: string
 }
 
 const initialValue = {
@@ -46,7 +47,8 @@ const initialValue = {
     isFetching: true,
     followingProgress: [] as Array<any>, // array of urers ids
     filteredOptions: {
-        term: ''
+        term: '',
+        friend: 'all'
     }
 }
 

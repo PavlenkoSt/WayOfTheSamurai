@@ -25,7 +25,8 @@ const DAL = {
     users: {
         getUsers(usersCountOnPage: number, currentPage: number, filteredOptions: FilteredOptionsType){
             const term = filteredOptions.term ? `&term=${filteredOptions.term}` : ''
-            return instance.get<UsersType>(`users?count=${usersCountOnPage}&page=${currentPage}${term}`).then(responce => responce.data)
+            const friend = filteredOptions.friend === 'all' ? '' : filteredOptions.friend === 'friends' ? `&friend=${true}` : `&friend=${false}`
+            return instance.get<UsersType>(`users?count=${usersCountOnPage}&page=${currentPage}${term}${friend}`).then(responce => responce.data)
         },
         follow(id: number){
             return instance.post<BaseResponceType>(`follow/${id}`).then(responce => responce.data)
