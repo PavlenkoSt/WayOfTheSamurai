@@ -16,12 +16,13 @@ type MapStatePropsType = {
     portionsSize: number
     isFetching: boolean
     followingProgress: Array<number>
+    filterOptions: FilteredOptionsType
 }
 
 type MapDispatchPropsType = {
     setTotalCount: (totalCount: number) => void 
     setCurrentPage: (currentPage: number) => void
-    getUsers: (countOnPage: number, currentPage: number) => any
+    getUsers: (countOnPage: number, currentPage: number, filteredOptions: FilteredOptionsType) => any
     unfollowUser: (id: number) => void
     followUser: (id: number) => void
     setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
@@ -35,7 +36,8 @@ const mapStateToProps = (state: AppStateType) => {
         currentPage: state.usersPage.currentPage,
         portionsSize: state.usersPage.portionsSize,
         isFetching: state.usersPage.isFetching,
-        followingProgress: state.usersPage.followingProgress
+        followingProgress: state.usersPage.followingProgress,
+        filterOptions: state.usersPage.filteredOptions
     }
 }
 

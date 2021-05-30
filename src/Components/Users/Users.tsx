@@ -19,6 +19,7 @@ type UsersPropsType = {
     followUser: (id: number) => void
     onPaginationChange: (page: number) => void
     setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
+    onFilterOptionsChange: (filterOptions: FilteredOptionsType) => void
 }
 
 const Users: FC<UsersPropsType> = props => {
@@ -27,6 +28,7 @@ const Users: FC<UsersPropsType> = props => {
             <h2 className={s.header}>Люди</h2>
             <SearchPeopleForm
                 setFilteredOptions={props.setFilteredOptions}
+                onFilterOptionsChange={props.onFilterOptionsChange}
             />
             <Pagination
                 totalCount={props.totalCount} 

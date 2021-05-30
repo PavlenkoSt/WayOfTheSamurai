@@ -107,9 +107,9 @@ const usersReducer = (state = initialValue, action: ActionType): InitialValueTyp
 
 type ThunkType = ThunkAction<void, Store, unknown, AnyAction>
 
-export const getUsers = (usersCountOnPage: number, currentPage: number): ThunkType => async dispatch => {
+export const getUsers = (usersCountOnPage: number, currentPage: number, filteredOptions: FilteredOptionsType): ThunkType => async dispatch => {
     dispatch(usersActions.changeLoaderVisible(true))
-    const data = await DAL.users.getUsers(usersCountOnPage, currentPage)
+    const data = await DAL.users.getUsers(usersCountOnPage, currentPage, filteredOptions)
     await dispatch(usersActions.setUsers(data.items))
     dispatch(usersActions.changeLoaderVisible(false))
     return data

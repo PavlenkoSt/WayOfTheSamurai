@@ -4,15 +4,17 @@ import { FilteredOptionsType } from '../../../Redux/usersReducer'
 
 type SearchPeopleFormPropsType = {
     setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
+    onFilterOptionsChange: (filterOptions: FilteredOptionsType) => void
 }
 
-const SearchPeopleForm: FC<SearchPeopleFormPropsType> = ({ setFilteredOptions }) => {
+const SearchPeopleForm: FC<SearchPeopleFormPropsType> = ({ setFilteredOptions, onFilterOptionsChange }) => {
     return (
         <div>
             <Formik
                 initialValues={{ term: '' }}
                 onSubmit={(values, { setSubmitting }) => {
                     setFilteredOptions(values)
+                    onFilterOptionsChange(values)
                     setSubmitting(false)
                 }}
             >

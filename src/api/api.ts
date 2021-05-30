@@ -1,3 +1,4 @@
+import { FilteredOptionsType } from './../Redux/usersReducer';
 import { ProfileType, PhotosForProfileType } from './../types/types';
 import axios from 'axios'
 
@@ -22,8 +23,9 @@ const DAL = {
         }
     },
     users: {
-        getUsers(usersCountOnPage: number, currentPage: number){
-            return instance.get<UsersType>(`users?count=${usersCountOnPage}&page=${currentPage}`).then(responce => responce.data)
+        getUsers(usersCountOnPage: number, currentPage: number, filteredOptions: FilteredOptionsType){
+            const term = filteredOptions.term ? `&term=${filteredOptions.term}` : ''
+            return instance.get<UsersType>(`users?count=${usersCountOnPage}&page=${currentPage}${term}`).then(responce => responce.data)
         },
         follow(id: number){
             return instance.post<BaseResponceType>(`follow/${id}`).then(responce => responce.data)
