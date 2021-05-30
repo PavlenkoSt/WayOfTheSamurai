@@ -1,4 +1,4 @@
-import { ActionTypes } from './reduxStore';
+import { ActionTypes } from './reduxStore'
 import { AnyAction, Store } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { authUser } from './authReducer'

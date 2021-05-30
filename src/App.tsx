@@ -1,11 +1,10 @@
 import './App.css'
-import store, { AppStateType } from './Redux/reduxStore'
-import React, { ComponentType, useEffect, useState } from 'react'
+import store from './Redux/reduxStore'
+import React, { useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-import { Provider, useSelector } from 'react-redux'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
+import { Provider, useDispatch, useSelector } from 'react-redux'
+
 import { initializeApp } from './Redux/appReducer'
 import withSuspense from './hoc/withSuspense'
 
@@ -25,25 +24,23 @@ const Musics = React.lazy(():any => import('./Components/Musics/Musics'))
 const Settings = React.lazy(():any => import('./Components/Settings/Settings'))
 const Login = React.lazy(():any => import('./Components/Login/Login'))
 
-type MapDispatchProps = {
-  initializeApp: () => void
-}
  
-const App = (props: any) => {
+const App = () => {
 
   const [errorStatus, errorStatusChange] = useState(false)
-  
+
   const initialized = useSelector(initializedSelector)
+  const dispatch = useDispatch()
 
   useEffect( () => {
-    props.initializeApp()
+    dispatch(initializeApp())
   }, [initialized])
 
   useEffect( () => {
     window.addEventListener("unhandledrejection", () => errorStatusChange(true))
   }, [])
 
-    if(!props.initialized){
+    if(!initialized){
       return <Preloader/>
     }
     return (
@@ -67,10 +64,7 @@ const App = (props: any) => {
     );
 }
 
-const AppWithRouter: any = compose<ComponentType>(
-  withRouter,
-  connect<null, MapDispatchProps, {}, AppStateType>(null, { initializeApp })
-)(App)
+const AppWithRouter = withRouter(App)
 
 export default () => {
   return (
