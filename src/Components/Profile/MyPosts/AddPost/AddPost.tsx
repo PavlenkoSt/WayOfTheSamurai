@@ -1,6 +1,6 @@
-import React, { ComponentType, FC, FormEventHandler } from 'react'
+import React, { ComponentType, FormEventHandler } from 'react'
 import s from './AddPost.module.css'
-import { Field, InjectedFormProps, reduxForm } from "redux-form"
+import { InjectedFormProps, reduxForm } from "redux-form"
 import { required, maxLengthCreator } from '../../../../utilts/validators/validators'
 import { FieldCreator, Textarea } from '../../../common/FormsControls/FormsControls'
 

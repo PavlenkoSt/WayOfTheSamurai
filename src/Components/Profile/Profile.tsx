@@ -1,12 +1,12 @@
-import s from './Profile.module.css'
 import MyProfileContainer from './MyProfile/MyProfileContainer'
-import MyPostsContainer from './MyPosts/MyPostsContainer'
+import MyPosts from './MyPosts/MyPosts'
+import s from './Profile.module.css'
 
 const Profile = () => {
     return (
         <div>
             <MyProfileContainer />
-            <MyPostsContainer />
+            <MyPosts />
         </div>
     )
 }
