@@ -2,38 +2,53 @@ import s from './MyProfile.module.css'
 import Avatar from './Avatar/Avatar'
 import Info from './Info/Info'
 import Preloader from '../../common/Preloader/Preloader'
-import { FC } from 'react'
-import { ProfileType } from '../../../types/types'
+import { FC, useEffect } from 'react'
+import { Redirect, RouteComponentProps, withRouter } from 'react-router'
+import { useDispatch, useSelector } from 'react-redux'
+import { userProfileSelector } from '../../../Redux/selectors/profileSelectors'
+import { idSelector } from '../../../Redux/selectors/authSelectors'
+import { getProfile, getUserStatus } from '../../../Redux/profileReducer'
 
 type MyProfilePropsType = {
-    profile: any
-    isOwner: boolean
-    myId: string
-    status: string
-    setPhoto: (photo: any) => any
-    updateStatus: (status: string, myId: string) => any
-    editProfileInfo: (profileInfo: ProfileType, myId: string) => any
-
+    match: any
 }
 
-const MyProfile: FC<MyProfilePropsType> = props => {
-    if(!props.profile){
+const MyProfile: FC<MyProfilePropsType & RouteComponentProps> = ({ match }) => {
+
+    const dispatch = useDispatch()
+
+    const isOwner = !match.params.userId
+    const profile = useSelector(userProfileSelector)
+    const myId = useSelector(idSelector)
+
+    useEffect(() => {
+        if(match.params.userId || myId){
+            dispatch(getProfile(match.params.userId, myId))
+            dispatch(getUserStatus(match.params.userId, myId))
+        }
+    }, [match.params.userId, myId])
+
+    if(!match.params.userId && !myId ){
+        return <Redirect to='/login'/>
+    }
+
+    if(!profile){
         return <Preloader/>
     }
 
     return (
         <div className={s.profile}>
-            <Avatar isOwner={props.isOwner} img={props.profile.photos.large} setPhoto={props.setPhoto}/>
+            <Avatar 
+                isOwner={isOwner} 
+                img={profile?.photos?.large}
+            />
             <Info 
-                isOwner={props.isOwner}
-                status={props.status}
-                updateStatus={props.updateStatus}
-                editProfileInfo={props.editProfileInfo}
-                myId={props.myId}
-                profile={props.profile}
+                isOwner={isOwner}
+                profile={profile}
+                myId={myId}
             />
         </div>
     )
 }
 
-export default MyProfile
+export default withRouter(MyProfile)

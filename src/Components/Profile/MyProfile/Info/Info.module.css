@@ -29,12 +29,6 @@
     margin-bottom: 10px;
 }
 
-.point{
-    font-weight: 700;
-    color: #333;
-    font-style: italic;
-}
-
 .link{
     text-decoration: none;
     font-weight: 700;
@@ -45,6 +39,3 @@
     color: rgb(61, 123, 255);
 }
 
-.contacts{
-    margin-top: 10px;
-}

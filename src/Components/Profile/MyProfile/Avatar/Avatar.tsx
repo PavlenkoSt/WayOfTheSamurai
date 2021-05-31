@@ -1,25 +1,27 @@
 import s from './Avatar.module.css'
 import userPhoto from './../../../../assets/user.png'
-import React, { ChangeEvent, FC, LegacyRef, useEffect, useState } from 'react'
+import React, { FC, LegacyRef, useEffect, useState } from 'react'
 import Preloader from '../../../common/Preloader/Preloader'
+import { useDispatch } from 'react-redux'
 
 type AvatarPropsType = {
     isOwner: boolean
-    img: string
-    setPhoto: (photo: any) => void
+    img?: string 
 }
 
-const Avatar: FC<AvatarPropsType> = props => {
+const Avatar: FC<AvatarPropsType> = ({ isOwner, img }) => {
     const [loadingStatus, loadingStatusChange] = useState(false)
+
+    const dispatch = useDispatch()
 
     useEffect( () => {
         loadingStatusChange(false)
-    }, [props.img])
+    }, [img])
     
-    const setPhoto = (e: ChangeEvent<HTMLInputElement>) => {
+    const setPhoto = (e: any) => {
         if(e.target.files && e.target.files.length){
             loadingStatusChange(true)
-            props.setPhoto(e.target.files[0])
+            dispatch(setPhoto(e.target.files[0]))
         }
     }
 
@@ -34,9 +36,9 @@ const Avatar: FC<AvatarPropsType> = props => {
     return (
         <div>
             <div className={s.avatar} style={loadingStatus ? {paddingBottom: '50px'} : {}}>
-                { loadingStatus ? <Preloader/>  : <img src={ props.img ? props.img : userPhoto } alt="avatar"/> }
+                { loadingStatus ? <Preloader/>  : <img src={ img ? img : userPhoto } alt="avatar"/> }
             </div>
-                {props.isOwner && <button className={s.btn} onClick={activateInput}>Изменить фото</button>}
+                {isOwner && <button className={s.btn} onClick={activateInput}>Изменить фото</button>}
             <input className={s.input} type='file' ref={ref as LegacyRef<HTMLInputElement> | undefined} onChange={ setPhoto } />
         </div>
     )

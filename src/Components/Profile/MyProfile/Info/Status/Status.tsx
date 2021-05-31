@@ -1,27 +1,33 @@
-import React, { ChangeEventHandler, FC, SyntheticEvent, useEffect, useState } from "react";
-import s from "./Status.module.css";
+import React, { ChangeEventHandler, FC, useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { updateStatus } from "../../../../../Redux/profileReducer"
+import { statusSelector } from "../../../../../Redux/selectors/profileSelectors"
+import s from "./Status.module.css"
 
 type StatusPropsType = {
   myId: string
-  status: string
   isOwner: boolean
-  updateStatus: (status: string, myId: string) => void
 }
 
-const Status: FC<StatusPropsType> = props => {
-  const [editMode, changeEditMode] = useState(false);
-  const [status, changeStatus] = useState(props.status);
+const Status: FC<StatusPropsType> = ({ isOwner, myId}) => {
+
+  const statusFromBLL = useSelector(statusSelector)
+
+  const [editMode, changeEditMode] = useState(false)
+  const [status, changeStatus] = useState(statusFromBLL)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    changeStatus(props.status);
-  }, [props.status]);
+    changeStatus(statusFromBLL)
+  }, [statusFromBLL])
 
   const activeEditMode = () => {
     changeEditMode(true);
   };
   const unactiveEditMode = () => {
     changeEditMode(false);
-    props.updateStatus(status, props.myId);
+    dispatch(updateStatus(status, myId))
   };
   const inputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     changeStatus(e.target.value);
@@ -31,10 +37,10 @@ const Status: FC<StatusPropsType> = props => {
     <div className={s.status}>
       {!editMode && (
         <span
-          title={ (props.isOwner && "Кликните дважды, чтобы изменить статус") || undefined }
-          onDoubleClick={ props.isOwner ? activeEditMode : undefined}
+          title={ (isOwner && "Кликните дважды, чтобы изменить статус") || undefined }
+          onDoubleClick={ isOwner ? activeEditMode : undefined}
         >
-          {status || (props.isOwner && "Кликните дважды, чтобы установить статус")}
+          {status || (isOwner && "Кликните дважды, чтобы установить статус")}
         </span>
       )}
       {editMode && (

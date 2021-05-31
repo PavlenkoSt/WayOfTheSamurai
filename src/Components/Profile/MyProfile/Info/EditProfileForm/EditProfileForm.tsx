@@ -9,20 +9,22 @@ type ProfileFormValuesType = {
     contacts: Object
 }
 
-const EdtiProfileForm: FC<InjectedFormProps<{}, ProfileFormValuesType> & ProfileFormValuesType> = props => {
+const EdtiProfileForm: FC<InjectedFormProps<{}, ProfileFormValuesType> & ProfileFormValuesType> = ({ editModeChange, handleSubmit, contacts, error }) => {
 
     const cancelEditMode: MouseEventHandler<HTMLButtonElement> = e => {
-        props.editModeChange(false)
+        editModeChange(false)
         e.preventDefault()
     }
 
      const getLinks = () => {
-        return Object.keys(props.contacts)
-            .map( link => <div key={link} className={s.item}><label > <span> {link} </span> { FieldCreator(s.input, Input, [], '', 'contacts.' + link) } </label></div> )
+        return Object.keys(contacts)
+            .map( link => <div key={link} className={s.item}>
+                    <label> <span> {link} </span> { FieldCreator(s.input, Input, [], '', 'contacts.' + link) } </label>
+                </div> )
      }
 
     return (
-        <form className={s.form} onSubmit={ props.handleSubmit }>
+        <form className={s.form} onSubmit={ handleSubmit }>
             <div className={s.item}>
                 <label>
                     <span>Полное имя: </span> { FieldCreator(s.input, Input, [], '', 'fullName') }
@@ -48,9 +50,9 @@ const EdtiProfileForm: FC<InjectedFormProps<{}, ProfileFormValuesType> & Profile
                 <button className={s.btn} onClick={cancelEditMode}>Отмена</button>
                 <button className={s.btn} type='submit'>Сохранить</button>
             </div>
-            {props.error && (
+            {error && (
                 <div className={ formControl.errorForm }>
-                    {props.error}
+                    {error}
                 </div>
             )}
         </form>

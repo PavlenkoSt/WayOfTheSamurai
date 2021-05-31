@@ -1,62 +1,60 @@
-import { FC, FormEventHandler, useState } from 'react'
+import { FC, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { editProfileInfo } from '../../../../Redux/profileReducer'
 import { ProfileType } from '../../../../types/types'
 import ContactItem from './ContactItem/ContactItem'
 import EdtiProfileForm from './EditProfileForm/EditProfileForm'
 import s from './Info.module.css'
+import InfoList from './InfoList/InfoList'
 import Status from './Status/Status'
 
 type InfoPropsType = {
     profile: ProfileType | any
     isOwner: boolean
     myId: string
-    status: string 
-    updateStatus: (status: string, myId: string) => void
-    editProfileInfo: (profileInfo: ProfileType, myId: string) => any
-
 }
 
-const Info: FC<InfoPropsType> = props => {
+const Info: FC<InfoPropsType> = ({ profile, myId, isOwner }) => {
     const [editMode, editModeChange] = useState(false)
 
+    const dispatch = useDispatch()
+
     const links = () => {
-        const keys = Object.keys(props.profile.contacts)
-        return keys.map( social => <ContactItem key={social} social={social} link={props.profile.contacts[social]} />) 
+        const keys = Object.keys(profile.contacts)
+        return keys.map( social => <ContactItem key={social} social={social} link={profile.contacts[social]} />) 
     }
 
-    const isEmptyContacts = Object.values(props.profile.contacts).some(val => val)
+    const isNotEmptyContacts = Object.values(profile.contacts).some(val => val)
 
-    const onSubmit = (FormData: any) => {
-        props.editProfileInfo(FormData, props.myId).then( () => editModeChange(false) )
+    const onSubmit = async (FormData: any) => {
+        await dispatch(editProfileInfo(FormData, myId))
+        editModeChange(false)
     }
 
     return (
         <div className={s.info}>
-            <div className={s.name}>{ props.profile.fullName }</div>
-            <Status myId={props.myId} isOwner={props.isOwner} status={props.status} updateStatus={props.updateStatus}/>
+            <div className={s.name}>{ profile.fullName }</div>
+            <Status 
+                myId={myId} 
+                isOwner={isOwner} 
+            />
             {
                 editMode 
-                ? <EdtiProfileForm contacts={props.profile.contacts} initialValues={props.profile} onSubmit={ onSubmit } editModeChange={editModeChange}/> 
+                ? <EdtiProfileForm 
+                    contacts={profile.contacts} 
+                    initialValues={profile} 
+                    onSubmit={onSubmit} 
+                    editModeChange={editModeChange}
+                /> 
                 : <div> 
-                    { props.isOwner && <button className={s.btn} onClick={ () => {editModeChange(true)}} >Редактировать информацию</button> }
-                    <ul>
-                        <li>Обо мне: <span className={s.point}>{props.profile.aboutMe}</span> </li>
-                        <li>Ищу работу: <span className={s.point}>{props.profile.lookingForAJob ? 'Да' : 'Нет'}</span> </li>
-                        { props.profile.lookingForAJob && <li> Профессиональные навыки: <span className={s.point}>{props.profile.lookingForAJobDescription}</span> </li>}
-                        <li>
-                            { isEmptyContacts && 
-                            (
-                                <div>
-                                    <b>Контакты:</b>
-                                    <ul className={s.contacts}>
-                                        {
-                                            links()
-                                        }
-                                    </ul>
-                                </div>
-                            )
-                            }
-                        </li>
-                    </ul>
+                    { isOwner && <button className={s.btn} onClick={ () => {editModeChange(true)}}>Редактировать информацию</button> }
+                    <InfoList
+                        aboutMe={profile.aboutMe}
+                        lookingForAJob={profile.lookingForAJob}
+                        lookingForAJobDescription={profile.lookingForAJobDescription}
+                        isNotEmptyContacts={isNotEmptyContacts}
+                        links={links}
+                    />
                 </div>
             }
         </div>
