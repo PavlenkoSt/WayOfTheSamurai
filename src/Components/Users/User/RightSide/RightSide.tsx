@@ -8,15 +8,15 @@ type RightSidePropsType = {
     status: string | null
 }
 
-const RightSide: FC<RightSidePropsType> = props => {
+const RightSide: FC<RightSidePropsType> = ({ status, id, name}) => {
     return (
         <div className={s.item}>
             <div className={s.info}>
-            <NavLink className={s.name} to={`/profile/${props.id}`}>
-                {props.name}
+            <NavLink className={s.name} to={`/profile/${id}`}>
+                {name}
             </NavLink>
                 <div className={s.status}>
-                    {props.status}
+                    {status}
                 </div>
             </div>
             <div className={s.location}>

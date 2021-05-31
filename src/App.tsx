@@ -16,7 +16,7 @@ import { initializedSelector } from './Redux/selectors/appSelectors'
 const Main = React.lazy(():any => import('./Components/Main/Main'))
 const Profile = React.lazy(():any => import('./Components/Profile/Profile'))
 const Dialogs = React.lazy(():any => import('./Components/Dialogs/Dialogs'))
-const UsersContainer = React.lazy(() => import('./Components/Users/UsersContainer'))
+const Users = React.lazy(() => import('./Components/Users/Users'))
 const News = React.lazy(():any => import('./Components/News/News'))
 const Musics = React.lazy(():any => import('./Components/Musics/Musics'))
 const Settings = React.lazy(():any => import('./Components/Settings/Settings'))
@@ -51,7 +51,7 @@ const App = () => {
             <Route path="/" exact render={ withSuspense(Main) } />
             <Route path="/profile/:userId?" render={ withSuspense(Profile) } />
             <Route path="/dialogs" render={  withSuspense(Dialogs) } />
-            <Route path="/users" render={  withSuspense(UsersContainer) } />
+            <Route path="/users" render={  withSuspense(Users) } />
             <Route path="/news" render={ withSuspense(News) } />
             <Route path="/musics" render={ withSuspense(Musics) } />
             <Route path="/settings" render={  withSuspense(Settings) } />

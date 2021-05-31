@@ -114,6 +114,7 @@ export const getUsers = (usersCountOnPage: number, currentPage: number, filtered
     const data = await DAL.users.getUsers(usersCountOnPage, currentPage, filteredOptions)
     await dispatch(usersActions.setUsers(data.items))
     dispatch(usersActions.changeLoaderVisible(false))
+    dispatch(usersActions.setTotalCount(data.totalCount))
     return data
 }
 

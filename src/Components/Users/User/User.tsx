@@ -7,28 +7,22 @@ type UserPropsType = {
     id: number
     photo: string
     followed: boolean
-    followingProgress: Array<number>
     name: string
     status: string | null
-    unfollowUser: (id: number) => void
-    followUser: (id: number) => void
 }
  
-const User: FC<UserPropsType> = props => {
+const User: FC<UserPropsType> = ({ id, photo, followed, name, status }) => {
     return (
         <div className={s.item}>
             <LeftSide
-                id={props.id} 
-                photo={props.photo} 
-                followed={props.followed} 
-                followingProgress={props.followingProgress}
-                unfollowUser={props.unfollowUser}
-                followUser={props.followUser}
+                propId={id} 
+                photo={photo} 
+                followed={followed} 
             />
             <RightSide 
-                id={props.id}
-                name={props.name} 
-                status={props.status}
+                id={id}
+                name={name} 
+                status={status}
             />
         </div>
     )

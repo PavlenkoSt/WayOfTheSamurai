@@ -2,48 +2,54 @@ import s from './Users.module.css'
 import User from './User/User'
 import Preloader from '../common/Preloader/Preloader'
 import Pagination from '../common/Pagination/Pagination'
-import { FC } from 'react'
-import { UserType } from '../../types/types'
+import { FC, useEffect } from 'react'
 import SearchPeopleForm from './SearchPeople/SearchPeopleForm'
-import { FilteredOptionsType } from '../../Redux/usersReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { currentPageSelector, totalCountSelector, usersCountOnPageSelector , portionsSizeSelector, filteredOptionsSelector, isFetchingSelector, usersSelector} from '../../Redux/selectors/usersSelectors'
+import { getUsers, usersActions } from '../../Redux/usersReducer'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
-type UsersPropsType = {
-    users: Array<UserType>
-    usersCountOnPage: number
-    totalCount: number
-    currentPage: number
-    portionsSize: number
-    isFetching: boolean
-    followingProgress: Array<number>
-    unfollowUser: (id: number) => void
-    followUser: (id: number) => void
-    onPaginationChange: (page: number) => void
-}
+const Users: FC = () => {
+    const dispatch = useDispatch()
 
-const Users: FC<UsersPropsType> = props => {
+    const totalCount = useSelector(totalCountSelector)
+    const countOnPage = useSelector(usersCountOnPageSelector)
+    const currentPage = useSelector(currentPageSelector)
+    const portionsSize = useSelector(portionsSizeSelector)
+
+    const filteredOptions = useSelector(filteredOptionsSelector)
+    const isFetching = useSelector(isFetchingSelector)
+    const users = useSelector(usersSelector)
+
+    const onPaginationChange = (currentPage: number) => {
+        dispatch(usersActions.setCurrentPage(currentPage))
+        dispatch(getUsers(countOnPage, currentPage, filteredOptions))
+    }
+
+    useEffect(() => {
+        dispatch(getUsers(countOnPage, currentPage, filteredOptions))
+    }, [currentPage, filteredOptions])
+
     return (
         <div className={s.container}>
             <h2 className={s.header}>Люди</h2>
             <SearchPeopleForm />
             <Pagination
-                totalCount={props.totalCount} 
-                countOnPage={props.usersCountOnPage} 
-                currentPage={props.currentPage} 
-                onPaginationChange={props.onPaginationChange}
-                portionsSize={props.portionsSize}
+                totalCount={totalCount} 
+                countOnPage={countOnPage} 
+                currentPage={currentPage} 
+                onPaginationChange={onPaginationChange}
+                portionsSize={portionsSize}
             />
             <div className={s.users}>
                 {
-                    props.isFetching ? <Preloader/> : props.users.map(user => <User
+                    isFetching ? <Preloader/> : users.map(user => <User
                         key={user.id}
                         id={user.id}
                         name={user.name}
                         status={user.status}
                         photo={user.photos.small}
                         followed={user.followed}
-                        followingProgress={props.followingProgress}
-                        unfollowUser={props.unfollowUser}
-                        followUser={props.followUser}
                     />)
                 }
             </div>
@@ -51,4 +57,4 @@ const Users: FC<UsersPropsType> = props => {
     )
 }
 
-export default Users
+export default withAuthRedirect(Users)
