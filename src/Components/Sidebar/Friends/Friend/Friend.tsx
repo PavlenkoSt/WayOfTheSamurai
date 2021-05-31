@@ -5,14 +5,14 @@ type FriendPropsType = {
     name: string
 }
 
-const Friend: FC<FriendPropsType> = props => {
+const Friend: FC<FriendPropsType> = ({ name }) => {
     return (
         <a href="#" className={s.item}>
             <div className={s.img}>
                 <img src="https://placehold.it/200x200/333" alt="friend"/>
             </div>
             <div className={s.name}>
-                {props.name}
+                {name}
             </div>
         </a>
     )

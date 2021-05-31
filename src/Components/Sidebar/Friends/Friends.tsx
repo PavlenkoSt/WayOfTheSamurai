@@ -1,21 +1,19 @@
 import { FC } from 'react'
 import Friend from './Friend/Friend'
 import s from './Friends.module.css'
-import { FriendsType } from '../../../Redux/sidebarReducer'
+import { useSelector } from 'react-redux'
+import { friendsSelector } from '../../../Redux/selectors/sidebarSelectors'
 
-type FriendsPropsType = {
-    friends: Array<FriendsType>
-}
 
-const Friends: FC<FriendsPropsType> = props => {
-
-  const sidebarFriends = props.friends.map( friend => <Friend key={friend.id} name={friend.name}/>)
+const Friends: FC = () => {
+    const friends = useSelector(friendsSelector)
+    const friendsElems = friends.map( friend => <Friend key={friend.id} name={friend.name}/>)
 
     return (
         <div>
             <h3 className={s.header}>Друзья</h3>
             <div className={s.friends}>
-                {sidebarFriends}
+                {friendsElems}
             </div>
         </div>
     )

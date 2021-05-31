@@ -1,20 +1,21 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC } from 'react'
 import Friends from './Friends/Friends'
 import s from './Sidebar.module.css'
-import { FriendsType } from '../../Redux/sidebarReducer'
+import { useSelector } from 'react-redux'
+import {  linksSelector } from '../../Redux/selectors/sidebarSelectors'
+import Link from './Link/Link'
 
-type SidebarPropsType = {
-    sidebarLinks: ReactNode
-    friends: Array<FriendsType>
-}
+const Sidebar: FC = () => {
 
-const Sidebar: FC<SidebarPropsType> = props => {
+    const links = useSelector(linksSelector)
+    const linksElems = links.map( link => <Link key={link.id} to={link.url} text={link.text} /> )
+
     return (
       <nav className={s.navbar}>
           <ul>
-              {props.sidebarLinks}
+              {linksElems}
           </ul>
-          <Friends friends={props.friends}/>
+          <Friends/>
       </nav>
     )
 }

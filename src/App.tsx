@@ -7,7 +7,7 @@ import { Provider, useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from './Redux/appReducer'
 import withSuspense from './hoc/withSuspense'
 import Header from './Components/Header/Header'
-import SidebarContainer from './Components/Sidebar/SidebarContainer'
+import Sidebar from './Components/Sidebar/Sidebar'
 import Preloader from './Components/common/Preloader/Preloader'
 import Modal from './Components/common/Modal/Modal'
 import { initializedSelector } from './Redux/selectors/appSelectors'
@@ -47,7 +47,7 @@ const App = () => {
         <div className="container">
           { errorStatus && <Modal errorStatusChange={errorStatusChange} errorMessage={'Неизвестная ошибка!'}/> }
           <div className="main">
-            <SidebarContainer />
+            <Sidebar />
             <Route path="/" exact render={ withSuspense(Main) } />
             <Route path="/profile/:userId?" render={ withSuspense(Profile) } />
             <Route path="/dialogs" render={  withSuspense(Dialogs) } />

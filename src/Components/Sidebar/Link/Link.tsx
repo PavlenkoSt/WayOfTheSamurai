@@ -7,10 +7,10 @@ type LinkProps = {
     text: string
 }
 
-const Link: FC<LinkProps> = props => {
+const Link: FC<LinkProps> = ({ to, text }) => {
     return (
         <li className={s.li}>
-            <NavLink className={s.a} to={props.to} exact activeClassName={s.active}>{props.text}</NavLink>
+            <NavLink className={s.a} to={to} exact activeClassName={s.active}>{text}</NavLink>
         </li>
     )
 }
