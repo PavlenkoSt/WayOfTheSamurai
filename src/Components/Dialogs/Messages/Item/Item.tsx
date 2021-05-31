@@ -6,16 +6,16 @@ type ItemProps = {
     message: string
 }
 
-const Item: FC<ItemProps> = props => {
+const Item: FC<ItemProps> = ({ name, message }) => {
     return (
        <li className={s.item}>
            <div className={s.user}>
                 <div className={s.img_inner}>
                     <img src="https://placehold.it/200x200/333" alt="avatar"/>
                 </div>
-                <div className={s.name}>{props.name}</div>
+                <div className={s.name}>{name}</div>
            </div>
-           <div className={s.message}>{props.message}</div>
+           <div className={s.message}>{message}</div>
        </li>
     )
 }

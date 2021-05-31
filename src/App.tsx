@@ -4,10 +4,8 @@ import React, { useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
-
 import { initializeApp } from './Redux/appReducer'
 import withSuspense from './hoc/withSuspense'
-
 import HeaderContainer from './Components/Header/HeaderContainer'
 import SidebarContainer from './Components/Sidebar/SidebarContainer'
 import Preloader from './Components/common/Preloader/Preloader'

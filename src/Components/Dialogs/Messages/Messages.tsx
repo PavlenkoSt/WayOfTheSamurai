@@ -1,19 +1,28 @@
-import { FC } from 'react';
-import AddMessageContainer from './AddMessage/AddMessageContainer';
+import { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import AddMessage from './AddMessage/AddMessage'
+import Item from './Item/Item'
+import { messagesSelector } from '../../../Redux/selectors/dialogsSelectors'
+import { dialogsActions } from '../../../Redux/dialogsReducer'
 import s from './Messages.module.css'
 
-type MessagesPropsType = {
-    messagesElements: React.ReactNode
-    sendMessage: (message: string) => void
-}
+const Messages: FC = () => {
 
-const Messages: FC<MessagesPropsType> = props => {
+    const dispatch = useDispatch()
+
+    const onSubmit = (message: any ) => {
+        dispatch(dialogsActions.sendMessage(message.message))
+    }
+
+    const messages = useSelector(messagesSelector)
+    const messagesElems = messages.map( el => <Item name={el.name} message={el.message} key={el.id}/> )
+
     return (
         <div>
             <ul>
-                { props.messagesElements }
+                { messagesElems }
             </ul>
-            <AddMessageContainer sendMessage={props.sendMessage}/>
+            <AddMessage onSubmit={onSubmit}/>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import s from './Dialogs.module.css'
-import MessagesContainer from './Messages/MessagesContainer'
+import Messages from './Messages/Messages'
 import PeopleContainer from './People/PeopleContainer'
 
 const Dialogs = () => {
@@ -9,7 +9,7 @@ const Dialogs = () => {
             <h2>Диалоги</h2>
             <div className={s.body}>
                 <PeopleContainer />
-                <MessagesContainer/>
+                <Messages/>
             </div>
         </div>
     )
