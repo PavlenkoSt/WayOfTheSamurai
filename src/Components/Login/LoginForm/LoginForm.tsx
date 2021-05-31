@@ -5,10 +5,11 @@ import { required } from '../../../utilts/validators/validators'
 import formControl from '../../common/FormsControls/FormsControls.module.css'
 import { FieldCreator } from '../../common/FormsControls/FormsControls'
 import { FormEventHandler } from "react"
+import { useSelector } from "react-redux"
+import { captchaUrlSelector } from "../../../Redux/selectors/authSelectors"
 
 type LoginProps = {
     handleSubmit: FormEventHandler<HTMLFormElement>,
-    captchaUrl: string | undefined
     error: string
 }
 
@@ -22,13 +23,15 @@ type NameFieldsType = {
 type NameTypesKeys = Extract<keyof NameFieldsType, string>
 
 const LoginForm: any = (props: LoginProps) => {
+    const captchaUrl = useSelector(captchaUrlSelector)
+
     return (
         <form className={s.form} onSubmit={props.handleSubmit}>
             { FieldCreator<NameTypesKeys>(s.input, Input, required, 'Логин', 'login') }
             { FieldCreator<NameTypesKeys>(s.input, Input, required, 'Пароль', 'password', 'password') }
             { FieldCreator<NameTypesKeys>(s.checkbox, 'input', [], undefined, 'save', 'checkbox', 'запомнить меня') }
-            { props.captchaUrl && <img className={s.captcha} src={props.captchaUrl}/>}
-            { props.captchaUrl && FieldCreator<NameTypesKeys>(s.input, Input, required, 'Введите символы с картинки', 'captcha' ) }
+            { captchaUrl && <img className={s.captcha} src={captchaUrl}/>}
+            { captchaUrl && FieldCreator<NameTypesKeys>(s.input, Input, required, 'Введите символы с картинки', 'captcha' ) }
             {props.error && (
                 <div className={ formControl.errorForm }>
                     {props.error}
