@@ -1,16 +1,23 @@
 import s from './Header.module.css'
 import {NavLink} from 'react-router-dom'
 import logo from '../../assets/logo.jpg'
-import { FC, MouseEventHandler } from 'react'
+import { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { idSelector, isAuthSelector, loginSelector } from '../../Redux/selectors/authSelectors'
+import { logout } from '../../Redux/authReducer'
 
-type HeaderPropsType = {
-  isAuth: boolean
-  id: number
-  login: string
-  logout: MouseEventHandler<HTMLButtonElement>
-}
+const Header: FC = () => {
 
-const Header: FC<HeaderPropsType> = props => {
+  const dispatch = useDispatch()
+
+  const logoutOnClick = () => {
+    dispatch(logout())
+  }
+
+  const isAuth = useSelector(isAuthSelector)
+  const id = useSelector(idSelector)
+  const login = useSelector(loginSelector)
+
     return (
       <div className="container">
         <header className={s.header}>
@@ -18,12 +25,12 @@ const Header: FC<HeaderPropsType> = props => {
             <img src={logo} className={s.img} alt="logo" />
           </NavLink>
           <div className={s.login}>
-            {props.isAuth 
+            {isAuth 
             ? (
              <div>
-              <NavLink to={`/profile/${props.id}`}>{props.login}</NavLink> &nbsp;
+              <NavLink to={`/profile/${id}`}>{login}</NavLink> &nbsp;
                 <button className={s.btn}
-                onClick={props.logout}
+                onClick={logoutOnClick}
                 >Выйти</button>
              </div>
             ) 

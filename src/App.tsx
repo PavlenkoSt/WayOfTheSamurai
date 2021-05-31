@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from './Redux/appReducer'
 import withSuspense from './hoc/withSuspense'
-import HeaderContainer from './Components/Header/HeaderContainer'
+import Header from './Components/Header/Header'
 import SidebarContainer from './Components/Sidebar/SidebarContainer'
 import Preloader from './Components/common/Preloader/Preloader'
 import Modal from './Components/common/Modal/Modal'
@@ -43,7 +43,7 @@ const App = () => {
     }
     return (
       <div className="app-wrapper">
-        <HeaderContainer />
+        <Header />
         <div className="container">
           { errorStatus && <Modal errorStatusChange={errorStatusChange} errorMessage={'Неизвестная ошибка!'}/> }
           <div className="main">
