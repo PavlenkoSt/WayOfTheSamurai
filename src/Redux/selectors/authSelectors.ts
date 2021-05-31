@@ -1,4 +1,4 @@
-import { AppStateType } from './reduxStore'
+import { AppStateType } from '../reduxStore'
 
 export const idSelector = (state: AppStateType) => state.auth.id
 export const emailSelector = (state: AppStateType) => state.auth.email

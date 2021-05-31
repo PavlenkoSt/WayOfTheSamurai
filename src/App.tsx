@@ -12,7 +12,7 @@ import HeaderContainer from './Components/Header/HeaderContainer'
 import SidebarContainer from './Components/Sidebar/SidebarContainer'
 import Preloader from './Components/common/Preloader/Preloader'
 import Modal from './Components/common/Modal/Modal'
-import { initializedSelector } from './Redux/appSelectors'
+import { initializedSelector } from './Redux/selectors/appSelectors'
 
 
 const Main = React.lazy(():any => import('./Components/Main/Main'))

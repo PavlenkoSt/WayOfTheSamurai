@@ -1,4 +1,4 @@
-import { AppStateType } from './reduxStore'
+import { AppStateType } from '../reduxStore'
 
 export const usersSelector = (state: AppStateType) => state.dialogsPage.users
 export const messagesSelector = (state: AppStateType) => state.dialogsPage.messages
