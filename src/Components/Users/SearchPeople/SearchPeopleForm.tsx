@@ -1,21 +1,28 @@
 import React, { FC } from 'react'
 import { Formik, Form, Field } from 'formik'
-import { FilteredOptionsType } from '../../../Redux/usersReducer'
+import { FilteredOptionsType, getUsers, usersActions } from '../../../Redux/usersReducer'
 import s from './SearchPeopleForm.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { usersCountOnPageSelector } from '../../../Redux/selectors/usersSelectors'
 
-type SearchPeopleFormPropsType = {
-    setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
-    onFilterOptionsChange: (filterOptions: FilteredOptionsType) => void
-}
 
-const SearchPeopleForm: FC<SearchPeopleFormPropsType> = ({ setFilteredOptions, onFilterOptionsChange }) => {
+const SearchPeopleForm: FC = () => {
+    const dispatch = useDispatch()
+
+    const usersCountOnPage = useSelector(usersCountOnPageSelector)
+
+    const onFilterOptionsChange = (filterOptions: FilteredOptionsType) => {
+        dispatch(getUsers(usersCountOnPage, 1, filterOptions))
+        dispatch(usersActions.setCurrentPage(1))
+        dispatch(usersActions.setFilteredOptions(filterOptions))
+    }
+
     return (
         <div>
             <Formik
                 initialValues={{ term: '', friend: 'all' }}
-                onSubmit={(values, { setSubmitting }) => {
-                    setFilteredOptions(values)
-                    onFilterOptionsChange(values)
+                onSubmit={ async (values, { setSubmitting }) => {
+                    await onFilterOptionsChange(values)
                     setSubmitting(false)
                 }}
             >

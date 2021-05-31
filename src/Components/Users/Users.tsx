@@ -18,18 +18,13 @@ type UsersPropsType = {
     unfollowUser: (id: number) => void
     followUser: (id: number) => void
     onPaginationChange: (page: number) => void
-    setFilteredOptions: (filteredOptions: FilteredOptionsType) => void
-    onFilterOptionsChange: (filterOptions: FilteredOptionsType) => void
 }
 
 const Users: FC<UsersPropsType> = props => {
     return (
         <div className={s.container}>
             <h2 className={s.header}>Люди</h2>
-            <SearchPeopleForm
-                setFilteredOptions={props.setFilteredOptions}
-                onFilterOptionsChange={props.onFilterOptionsChange}
-            />
+            <SearchPeopleForm />
             <Pagination
                 totalCount={props.totalCount} 
                 countOnPage={props.usersCountOnPage} 

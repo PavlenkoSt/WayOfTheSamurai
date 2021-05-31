@@ -32,11 +32,6 @@ const UsersAPI: FC<UsersProps> = (props) => {
     props.getUsers(props.usersCountOnPage, currentPage, props.filterOptions)
   }
 
-  const onFilterOptionsChange = (filterOptions: FilteredOptionsType) => {
-    props.setCurrentPage(1)
-    props.getUsers(props.usersCountOnPage, 1, filterOptions)
-  }
-
   return (
     <Users
       onPaginationChange={onPaginationChange}
@@ -49,8 +44,6 @@ const UsersAPI: FC<UsersProps> = (props) => {
       followingProgress={props.followingProgress}
       unfollowUser={props.unfollowUser}
       followUser={props.followUser}
-      setFilteredOptions={props.setFilteredOptions}
-      onFilterOptionsChange={onFilterOptionsChange}
     />
   );
 };
