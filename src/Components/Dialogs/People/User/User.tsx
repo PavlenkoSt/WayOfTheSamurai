@@ -7,9 +7,9 @@ type UserPropsType = {
     name: string
 }
 
-const User: FC<UserPropsType> = props => {
+const User: FC<UserPropsType> = ({ url, name }) => {
     return (
-        <NavLink className={s.a} to={"/dialogs/" + props.url} activeClassName={s.active}>{props.name}</NavLink>
+        <NavLink className={s.a} to={"/dialogs/" + url} activeClassName={s.active}>{name}</NavLink>
     )
 }
 
