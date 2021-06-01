@@ -1,15 +1,16 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Formik, Form, Field } from 'formik'
 import { FilteredOptionsType, getUsers, usersActions } from '../../../Redux/usersReducer'
 import s from './SearchPeopleForm.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { usersCountOnPageSelector } from '../../../Redux/selectors/usersSelectors'
+import { filteredOptionsSelector, usersCountOnPageSelector } from '../../../Redux/selectors/usersSelectors'
 
 
 const SearchPeopleForm: FC = () => {
     const dispatch = useDispatch()
 
     const usersCountOnPage = useSelector(usersCountOnPageSelector)
+    const filter = useSelector(filteredOptionsSelector)
 
     const onFilterOptionsChange = (filterOptions: FilteredOptionsType) => {
         dispatch(getUsers(usersCountOnPage, 1, filterOptions))
@@ -20,7 +21,8 @@ const SearchPeopleForm: FC = () => {
     return (
         <div>
             <Formik
-                initialValues={{ term: '', friend: 'all' }}
+                enableReinitialize={true}
+                initialValues={{ term: filter.term, friend: filter.friend }}
                 onSubmit={ async (values, { setSubmitting }) => {
                     await onFilterOptionsChange(values)
                     setSubmitting(false)
