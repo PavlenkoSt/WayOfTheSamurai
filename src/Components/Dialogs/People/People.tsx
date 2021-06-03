@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
 import { usersSelector } from '../../../Redux/selectors/dialogsSelectors'
-import s from './People.module.css'
+import s from './People.module.scss'
 import User from './User/User'
 
 const People: FC = () => {

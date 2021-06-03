@@ -1,4 +1,4 @@
-import s from './MyPosts.module.css'
+import s from './MyPosts.module.scss'
 import AddPost from './AddPost/AddPost'
 import { FC, ReactNode } from 'react'
 import { useDispatch, useSelector } from 'react-redux'

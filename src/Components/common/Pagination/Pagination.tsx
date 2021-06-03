@@ -1,29 +1,32 @@
 import { FC, useState } from 'react'
-import s from './Pagination.module.css'
+import s from './Pagination.module.scss'
 import classnames from 'classnames'
+import { useSelector } from 'react-redux'
+import { currentPageSelector, portionsSizeSelector, totalCountSelector, usersCountOnPageSelector } from '../../../Redux/selectors/usersSelectors'
 
 type PaginationProps = {
-    totalCount: number
-    countOnPage: number
-    currentPage: number
-    portionsSize: number
     onPaginationChange: (page: number) => void
 }
 
-const Pagination: FC<PaginationProps> = props => {
-    const pagesCount = Math.ceil(props.totalCount / props.countOnPage)
+const Pagination: FC<PaginationProps> = ({ onPaginationChange }) => {
+
+    const totalCount = useSelector(totalCountSelector)
+    const countOnPage = useSelector(usersCountOnPageSelector)
+    const currentPage = useSelector(currentPageSelector)
+    const portionsSize = useSelector(portionsSizeSelector)
+
+    const pagesCount = Math.ceil(totalCount / countOnPage)
     let paginations = []
     for (let i = 1; i <= pagesCount; i++) {
         paginations.push(<button
             key={i}
-            onClick={() => { props.onPaginationChange(i) }}
+            onClick={() => { onPaginationChange(i) }}
             className={classnames(
-                {[s.active]: props.currentPage === i}, s.pagBtn
+                {[s.active]: currentPage === i}, s.pagBtn
                 )}
              >{i}</button>);
     }
     
-    const portionsSize = props.portionsSize
     const totalPortionsCount = pagesCount / portionsSize
     const [currentPortion, changeCurrentPortion] = useState(1)
     const leftPointPortion = (currentPortion - 1) * portionsSize + 1

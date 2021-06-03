@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import s from './InfoList.module.css'
+import s from './InfoList.module.scss'
 
 type InfoListPropsType = {
     aboutMe: string

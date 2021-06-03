@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import s from './Post.module.css'
+import s from './Post.module.scss'
 
 type PostPropsType = {
     message: string

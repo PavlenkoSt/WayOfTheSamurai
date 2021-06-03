@@ -1,5 +1,5 @@
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import s from './Dialogs.module.css'
+import s from './Dialogs.module.scss'
 import Messages from './Messages/Messages'
 import People from './People/People'
 

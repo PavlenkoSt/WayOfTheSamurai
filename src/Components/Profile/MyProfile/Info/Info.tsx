@@ -4,7 +4,7 @@ import { editProfileInfo } from '../../../../Redux/profileReducer'
 import { ProfileType } from '../../../../types/types'
 import ContactItem from './ContactItem/ContactItem'
 import EdtiProfileForm from './EditProfileForm/EditProfileForm'
-import s from './Info.module.css'
+import s from './Info.module.scss'
 import InfoList from './InfoList/InfoList'
 import Status from './Status/Status'
 

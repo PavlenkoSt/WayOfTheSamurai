@@ -1,7 +1,7 @@
 import { FieldCreator, Input, Textarea } from "../../../../common/FormsControls/FormsControls"
 import { InjectedFormProps, reduxForm } from "redux-form"
-import s from './EditProfileForm.module.css'
-import formControl from '../../../../common/FormsControls/FormsControls.module.css'
+import s from './EditProfileForm.module.scss'
+import formControl from '../../../../common/FormsControls/FormsControls.module.scss'
 import { FC, FormEventHandler, MouseEventHandler } from "react"
 
 type ProfileFormValuesType = {

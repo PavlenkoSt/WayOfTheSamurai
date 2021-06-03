@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import s from './RightSide.module.css'
+import s from './RightSide.module.scss'
 
 type RightSidePropsType = {
     id: number
@@ -11,10 +11,10 @@ type RightSidePropsType = {
 const RightSide: FC<RightSidePropsType> = ({ status, id, name}) => {
     return (
         <div className={s.item}>
-            <div className={s.info}>
-            <NavLink className={s.name} to={`/profile/${id}`}>
-                {name}
-            </NavLink>
+            <div>
+                <NavLink className={s.name} to={`/profile/${id}`}>
+                    {name}
+                </NavLink>
                 <div className={s.status}>
                     {status}
                 </div>

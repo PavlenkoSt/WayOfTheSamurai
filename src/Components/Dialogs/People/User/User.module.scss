@@ -6,11 +6,10 @@
     text-decoration: none;
     transition: all ease .2s;
     font-weight: 700;
-}
-
-.a:hover{
-    color: rgb(0, 0, 163);
-}
-.a.active{
-    color: rgb(0, 0, 180);
+    &:hover{
+        color: rgb(0, 0, 163);
+    }
+    &.active{
+        color: rgb(0, 0, 180);
+    }
 }

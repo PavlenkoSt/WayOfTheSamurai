@@ -1,4 +1,4 @@
-import s from './Users.module.css'
+import s from './Users.module.scss'
 import User from './User/User'
 import Preloader from '../common/Preloader/Preloader'
 import Pagination from '../common/Pagination/Pagination'
@@ -80,11 +80,7 @@ const Users: FC = () => {
             <h2 className={s.header}>Люди</h2>
             <SearchPeopleForm />
             <Pagination
-                totalCount={totalCount} 
-                countOnPage={countOnPage} 
-                currentPage={currentPage} 
                 onPaginationChange={onPaginationChange}
-                portionsSize={portionsSize}
             />
             <div className={s.users}>
                 {

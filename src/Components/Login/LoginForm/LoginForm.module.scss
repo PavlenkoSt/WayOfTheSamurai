@@ -27,10 +27,9 @@
     border: none;
     cursor: pointer;
     transition: all ease .2s;
-}
-
-.btn:hover{
-    background-color: rgb(71, 97, 247);
+    &:hover{
+        background-color: rgb(71, 97, 247);
+    }
 }
 
 .captcha{

@@ -7,19 +7,20 @@
     justify-content: center;   
     align-items: center;
     margin-top: 50px;
+    &::after {
+        content: " ";
+        display: block;
+        border-radius: 50%;
+        width: 0;
+        height: 0;
+        margin: 8px;
+        box-sizing: border-box;
+        border: 64px solid rgb(5,51,151);
+        border-color: rgb(5,51,151) transparent rgb(5,51,151) transparent;
+        animation: ldsHourglass 1.2s infinite;
+    }
 }
-.ldsHourglass:after {
-    content: " ";
-    display: block;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    margin: 8px;
-    box-sizing: border-box;
-    border: 64px solid rgb(5,51,151);
-    border-color: rgb(5,51,151) transparent rgb(5,51,151) transparent;
-    animation: ldsHourglass 1.2s infinite;
-}
+
 @keyframes ldsHourglass {
     0% {
     transform: rotate(0);

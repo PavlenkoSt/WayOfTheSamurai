@@ -1,4 +1,4 @@
-import s from './Avatar.module.css'
+import s from './Avatar.module.scss'
 import userPhoto from './../../../../assets/user.png'
 import React, { FC, LegacyRef, useEffect, useState } from 'react'
 import Preloader from '../../../common/Preloader/Preloader'

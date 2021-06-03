@@ -1,4 +1,4 @@
-import s from './MyProfile.module.css'
+import s from './MyProfile.module.scss'
 import Avatar from './Avatar/Avatar'
 import Info from './Info/Info'
 import Preloader from '../../common/Preloader/Preloader'

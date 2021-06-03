@@ -1,7 +1,7 @@
-import { FC, ReactNode } from "react"
+import { FC } from "react"
 import { Field, WrappedFieldProps } from "redux-form"
 import { ValidatorType } from "../../../utilts/validators/validators"
-import s from "./FormsControls.module.css"
+import s from "./FormsControls.module.scss"
 
 const FormControl: FC<WrappedFieldProps> = ({ input, meta, ...props }) => {
   const hasError = meta.error && meta.touched

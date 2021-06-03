@@ -1,4 +1,4 @@
-import s from './LeftSide.module.css'
+import s from './LeftSide.module.scss'
 import userPhoto from './../../../../assets/user.png'
 import { NavLink } from 'react-router-dom'
 import { FC } from 'react'

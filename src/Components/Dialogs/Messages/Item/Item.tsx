@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import s from './Item.module.css'
+import s from './Item.module.scss'
 
 type ItemProps = {
     name: string

@@ -3,7 +3,7 @@
     grid-template-columns: 150px 1fr;
     margin-bottom: 20px;
     border: 1px solid #333;
-}
-.item:last-child{
-    margin-bottom: 0;
+    &:last-child{
+        margin-bottom: 0;
+    }
 }

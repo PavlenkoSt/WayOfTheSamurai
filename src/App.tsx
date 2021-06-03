@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import store from './Redux/reduxStore'
 import React, { useEffect, useState } from 'react'
 import { Route, withRouter } from 'react-router-dom'

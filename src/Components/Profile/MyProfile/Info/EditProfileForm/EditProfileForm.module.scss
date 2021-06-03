@@ -58,9 +58,7 @@
     font-size: 12px;
     padding: 5px;
     min-width: 80px;
-}
-
-
-.btn:hover{
-    background-color: #fff; 
+    &:hover{
+        background-color: #fff; 
+    }
 }

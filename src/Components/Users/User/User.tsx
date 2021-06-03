@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import LeftSide from './LeftSide/LeftSide'
 import RightSide from './RightSide/RightSide'
-import s from './User.module.css'
+import s from './User.module.scss'
 
 type UserPropsType = {
     id: number

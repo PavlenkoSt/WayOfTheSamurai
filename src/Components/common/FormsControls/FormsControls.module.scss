@@ -1,0 +1,15 @@
+.formControls{
+    &.error{
+        & textarea,
+        & input{
+            border: 2px solid rgb(235, 0, 0);
+        }
+    }
+    & .errorMessage{
+        color: rgb(235, 0, 0);
+    }
+}
+
+.errorForm{
+    color: rgb(235, 0, 0);
+}

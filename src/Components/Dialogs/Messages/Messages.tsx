@@ -1,10 +1,9 @@
 import { FC } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { dialogsActions } from '../../../Redux/dialogsReducer'
+import { messagesSelector } from '../../../Redux/selectors/dialogsSelectors'
 import AddMessage from './AddMessage/AddMessage'
 import Item from './Item/Item'
-import { messagesSelector } from '../../../Redux/selectors/dialogsSelectors'
-import { dialogsActions } from '../../../Redux/dialogsReducer'
-import s from './Messages.module.css'
 
 const Messages: FC = () => {
 

@@ -1,4 +1,4 @@
-import s from './Header.module.css'
+import s from './Header.module.scss'
 import {NavLink} from 'react-router-dom'
 import logo from '../../assets/logo.jpg'
 import { FC } from 'react'

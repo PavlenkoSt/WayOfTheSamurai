@@ -1,12 +1,11 @@
-import { InjectedFormProps, reduxForm } from "redux-form"
-import { Input } from "../../common/FormsControls/FormsControls"
-import s from './LoginForm.module.css'
-import { required } from '../../../utilts/validators/validators'
-import formControl from '../../common/FormsControls/FormsControls.module.css'
-import { FieldCreator } from '../../common/FormsControls/FormsControls'
 import { FormEventHandler } from "react"
 import { useSelector } from "react-redux"
+import { reduxForm } from "redux-form"
 import { captchaUrlSelector } from "../../../Redux/selectors/authSelectors"
+import { required } from '../../../utilts/validators/validators'
+import { FieldCreator, Input } from "../../common/FormsControls/FormsControls"
+import formControl from '../../common/FormsControls/FormsControls.module.scss'
+import s from './LoginForm.module.scss'
 
 type LoginProps = {
     handleSubmit: FormEventHandler<HTMLFormElement>,

@@ -3,10 +3,13 @@
     justify-items: center;
     margin-bottom: 20px;
     text-decoration: none;
+    &:hover{
+        & .name{
+            color: #fff;
+        }
+    }
 }
-.item:hover .name{
-    color: #fff;
-}
+
 .img{
     width: 60px;
     display: flex;
@@ -15,10 +18,9 @@
     overflow: hidden;
     border-radius: 50%;
     margin-bottom: 5px;
-}
-
-.img img{
-    max-width: 100%;
+    & img{
+        max-width: 100%;
+    }
 }
 
 .name{

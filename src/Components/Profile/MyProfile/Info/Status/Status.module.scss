@@ -8,10 +8,9 @@
     cursor: pointer;
     font-weight: 700;
     transition: all ease .2s;
-}
-
-.status:hover{
-    color: #000;
+    &:hover{
+        color: #000;
+    }
 }
 
 .input{

@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import s from './User.module.css'
+import s from './User.module.scss'
 
 type UserPropsType = {
     url: number

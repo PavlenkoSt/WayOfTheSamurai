@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import Friends from './Friends/Friends'
-import s from './Sidebar.module.css'
+import s from './Sidebar.module.scss'
 import { useSelector } from 'react-redux'
 import {  linksSelector } from '../../Redux/selectors/sidebarSelectors'
 import Link from './Link/Link'

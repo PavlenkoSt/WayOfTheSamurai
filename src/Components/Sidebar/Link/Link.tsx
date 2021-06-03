@@ -1,4 +1,4 @@
-import s from './Link.module.css'
+import s from './Link.module.scss'
 import {NavLink} from 'react-router-dom'
 import { FC } from 'react'
 

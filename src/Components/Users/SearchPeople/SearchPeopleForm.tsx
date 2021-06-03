@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import { Formik, Form, Field } from 'formik'
 import { FilteredOptionsType, getUsers, usersActions } from '../../../Redux/usersReducer'
-import s from './SearchPeopleForm.module.css'
+import s from './SearchPeopleForm.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { filteredOptionsSelector, usersCountOnPageSelector } from '../../../Redux/selectors/usersSelectors'
 

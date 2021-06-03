@@ -2,7 +2,7 @@ import React, { ChangeEventHandler, FC, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { updateStatus } from "../../../../../Redux/profileReducer"
 import { statusSelector } from "../../../../../Redux/selectors/profileSelectors"
-import s from "./Status.module.css"
+import s from "./Status.module.scss"
 
 type StatusPropsType = {
   myId: string

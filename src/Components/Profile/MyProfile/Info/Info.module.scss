@@ -1,9 +1,11 @@
 .info{
     padding: 0 20px;
-}
+    & ul{
+        & li{
+            margin-bottom: 10px;
 
-.info ul li{
-    margin-bottom: 10px;
+        }
+    }
 }
 
 .btn{
@@ -16,10 +18,9 @@
     border: 1px solid #333;
     font-size: 12px;
     padding: 5px;
-}
-
-.btn:hover{
-    background-color: #fff;
+    &:hover{
+        background-color: #fff;
+    }
 }
 
 .name{
@@ -34,8 +35,7 @@
     font-weight: 700;
     color: rgb(0, 79, 248);
     transition: all ease .2s;
+    &:hover{
+        color: rgb(61, 123, 255);
+    }
 }
-.link:hover{
-    color: rgb(61, 123, 255);
-}
-

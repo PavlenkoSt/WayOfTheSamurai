@@ -1,8 +1,8 @@
 import React, { ComponentType, FormEventHandler } from 'react'
-import s from './AddPost.module.css'
 import { InjectedFormProps, reduxForm } from "redux-form"
-import { required, maxLengthCreator } from '../../../../utilts/validators/validators'
+import { maxLengthCreator, required } from '../../../../utilts/validators/validators'
 import { FieldCreator, Textarea } from '../../../common/FormsControls/FormsControls'
+import s from './AddPost.module.scss'
 
 const maxLength30 = maxLengthCreator(30)
 

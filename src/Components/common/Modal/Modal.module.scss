@@ -32,10 +32,9 @@
     color: rgb(199, 199, 199);
     cursor: pointer;
     transition: all ease .2s;
-}
-
-.close:hover{
-    color: #fff;
+    &:hover{
+        color: #fff;
+    }
 }
 
 .header{
@@ -62,8 +61,7 @@
     font-size: 18px;
     transition: all ease .2s;
     cursor: pointer;
-}
-
-.ok:hover{
-    color: #fff;
+    &:hover{
+        color: #fff;
+    }
 }

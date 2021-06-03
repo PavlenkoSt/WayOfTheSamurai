@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import s from './ContactItem.module.css'
+import s from './ContactItem.module.scss'
 
 type ContactItemPropsType = {
     social: string
