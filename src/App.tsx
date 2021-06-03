@@ -1,7 +1,7 @@
 import './App.scss'
 import store from './Redux/reduxStore'
 import React, { useEffect, useState } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from './Redux/appReducer'
@@ -21,6 +21,8 @@ const News = React.lazy(():any => import('./Components/News/News'))
 const Musics = React.lazy(():any => import('./Components/Musics/Musics'))
 const Settings = React.lazy(():any => import('./Components/Settings/Settings'))
 const Login = React.lazy(():any => import('./Components/Login/Login'))
+const Err404 = React.lazy(():any => import('./pages/Error404/Error404'))
+const Chat = React.lazy(():any => import('./pages/ChatPage/ChatPage'))
 
  
 const App = () => {
@@ -48,14 +50,18 @@ const App = () => {
           { errorStatus && <Modal errorStatusChange={errorStatusChange} errorMessage={'Неизвестная ошибка!'}/> }
           <div className="main">
             <Sidebar />
-            <Route path="/" exact render={ withSuspense(Main) } />
-            <Route path="/profile/:userId?" render={ withSuspense(Profile) } />
-            <Route path="/dialogs" render={  withSuspense(Dialogs) } />
-            <Route path="/users" render={  withSuspense(Users) } />
-            <Route path="/news" render={ withSuspense(News) } />
-            <Route path="/musics" render={ withSuspense(Musics) } />
-            <Route path="/settings" render={  withSuspense(Settings) } />
-            <Route path="/login" render={ withSuspense(Login) } />
+            <Switch>
+              <Route path="/" exact render={ withSuspense(Main) } />
+              <Route path="/profile/:userId?" render={ withSuspense(Profile) } />
+              <Route path="/dialogs" render={  withSuspense(Dialogs) } />
+              <Route path="/users" render={  withSuspense(Users) } />
+              <Route path="/news" render={ withSuspense(News) } />
+              <Route path="/musics" render={ withSuspense(Musics) } />
+              <Route path="/settings" render={  withSuspense(Settings) } />
+              <Route path="/login" render={ withSuspense(Login) } />
+              <Route path="/chat" render={ withSuspense(Chat) } />
+              <Route path="*" render={ withSuspense(Err404) } />
+            </Switch>
           </div>
         </div>
       </div>
