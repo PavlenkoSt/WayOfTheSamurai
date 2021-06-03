@@ -1,4 +1,4 @@
-import { ActionTypes } from './reduxStore';
+import { ActionTypes } from './reduxStore'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 type UsersType = {

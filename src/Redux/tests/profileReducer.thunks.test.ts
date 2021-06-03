@@ -1,5 +1,5 @@
-import DAL from "../api/api"
-import { editProfileInfo, getProfile, getUserStatus, profileActions, setPhoto, updateStatus } from "./profileReducer"
+import DAL from "../../api/api"
+import { editProfileInfo, getProfile, getUserStatus, profileActions, setPhoto, updateStatus } from "../profileReducer"
 
 jest.mock('../api/api')
 const mockedDAL = DAL as jest.Mocked<typeof DAL>

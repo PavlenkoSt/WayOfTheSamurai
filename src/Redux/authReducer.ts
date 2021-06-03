@@ -1,5 +1,5 @@
-import { ActionTypes } from './reduxStore';
-import { ResultCodeEnum, CaptchaEnum } from './../api/api';
+import { ActionTypes } from './reduxStore'
+import { ResultCodeEnum, CaptchaEnum } from './../api/api'
 import { AnyAction, Store } from 'redux'
 import { stopSubmit } from 'redux-form'
 import { ThunkAction } from 'redux-thunk'
