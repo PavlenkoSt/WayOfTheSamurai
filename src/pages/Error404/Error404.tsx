@@ -3,7 +3,8 @@ import React from 'react'
 function Error404() {
     return (
         <div>
-            404
+            <h2>Ошибка 404</h2>
+            <div>Страница не найдена</div>
         </div>
     )
 }

@@ -14,7 +14,7 @@ const initialValue = {
         {id:1 , url: '/profile', text: 'Профиль'},
         {id:2 , url: '/dialogs', text: 'Диалоги'},
         {id:3 , url: '/users', text: 'Люди'},
-        {id:4 , url: '/news', text: 'Новости'},
+        {id:4 , url: '/chat', text: 'Чат'},
         {id:5 , url: '/musics', text: 'Музыка'},
         {id:6 , url: '/settings', text: 'Настройки'},
     ] as Array<LinksType> ,

@@ -2,9 +2,10 @@ import React from 'react'
 
 function AddMessageForm() {
     return (
-        <div>
-            
-        </div>
+        <form>
+            <input type='text'/>
+            <button>Отправить</button>
+        </form>
     )
 }
 

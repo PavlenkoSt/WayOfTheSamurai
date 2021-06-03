@@ -5,7 +5,7 @@ import Messages from './Messages/Messages'
 function Chat() {
     return (
         <div>
-            Chat
+            <h2>Чат</h2>
             <Messages/>
             <AddMessageForm/>
         </div>
