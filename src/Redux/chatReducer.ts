@@ -2,10 +2,16 @@ import { ActionTypes } from './reduxStore'
 
 const SET_MESSAGES = 'SET_MESSAGES'
 
-type ChatMessagesType = any
+
+type ChatMessagesType = {
+    userId: number
+    userName: string
+    photo: string
+    message: string
+}
 
 const initialValue = {
-    messages: [] as ChatMessagesType
+    messages: [] as Array<ChatMessagesType>
 }
 
 type InitialValueType = typeof initialValue
@@ -25,7 +31,7 @@ const chatReducer = (state = initialValue, action: ActionType): InitialValueType
 }
 
 export const chatActions = {
-    setMessages: (messages: ChatMessagesType) => ({ type: SET_MESSAGES, messages})
+    setMessages: (messages: Array<ChatMessagesType>) => ({ type: SET_MESSAGES, messages})
 }
 
 export default chatReducer 

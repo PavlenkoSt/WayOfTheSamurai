@@ -1,0 +1,33 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid rgb(180, 180, 180);
+    padding: 5px;
+    &:last-child{
+        border-bottom: none;
+    }
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.img{
+    width: 30px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.name{
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+}
+
+.message{
+    font-size: 18px;
+    color: #333;
+}
