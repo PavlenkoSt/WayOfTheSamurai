@@ -5,18 +5,26 @@ import { chatMessagesSelector } from '../../../Redux/selectors/chatSelectors'
 import Message from './Message/Message'
 import s from './Messages.module.scss'
 
+type MessagesPropsType = {
+    webSocketChannel: WebSocket | null
+}
 
-const Messages: FC<any> = ({webSocketChannel}) => {
+const Messages: FC<MessagesPropsType> = ({webSocketChannel}) => {
     const dispatch = useDispatch()
     const messages = useSelector(chatMessagesSelector)
 
     useEffect(() => {
         const messageHandler = (e: any) => {
-            console.log(e);
             dispatch(chatActions.setMessages(JSON.parse(e.data)))
         }
-        webSocketChannel.addEventListener('message', messageHandler)
-    }, [])
+
+        webSocketChannel?.addEventListener('message', messageHandler)
+
+        return () => {
+            webSocketChannel?.removeEventListener('message', messageHandler)
+            webSocketChannel?.close()
+        }
+    }, [webSocketChannel])
 
     const messagesItems = messages.map((message, i) => <Message
         key={i}
