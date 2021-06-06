@@ -1,27 +1,15 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
+import React, { FC } from 'react'
+import { useDispatch } from 'react-redux'
+import { sendMessage } from '../../../Redux/chatReducer'
 
 type AddMessageFormType = {
     message?: string
 }
 
-type AddMessageFormPropsType = {
-    webSocketChannel: WebSocket | null
-}
+const AddMessageForm: FC = () => {
 
-const AddMessageForm: FC<AddMessageFormPropsType> = ({webSocketChannel}) => {
-
-    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
-
-    useEffect(() => {
-        const openHandler = () => {
-            setReadyStatus('ready')
-        }
-
-        webSocketChannel?.addEventListener('open', openHandler)
-
-        return () => webSocketChannel?.removeEventListener('open', openHandler)
-    }, [webSocketChannel])
+    const dispatch = useDispatch()
 
     return (
         <Formik
@@ -34,7 +22,7 @@ const AddMessageForm: FC<AddMessageFormPropsType> = ({webSocketChannel}) => {
                 return errors
             }}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-                webSocketChannel?.send(values.message)
+                dispatch(sendMessage(values.message))
                 resetForm()
                 setSubmitting(false)
             }}
@@ -45,7 +33,7 @@ const AddMessageForm: FC<AddMessageFormPropsType> = ({webSocketChannel}) => {
                 <ErrorMessage name="message" component="div" />
                 <button 
                     type="submit" 
-                    disabled={isSubmitting || webSocketChannel === null || readyStatus !== 'ready'}
+                    disabled={isSubmitting}
                 >Отправить</button>
             </Form>
             )}
