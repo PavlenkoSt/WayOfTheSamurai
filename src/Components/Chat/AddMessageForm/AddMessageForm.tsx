@@ -31,7 +31,7 @@ const AddMessageForm: FC = () => {
         >
             {({ isSubmitting }) => (
             <Form>
-                <Field type="text" name="message" />
+                <Field type="text" name="message" as='textarea'/>
                 <ErrorMessage name="message" component="div" />
                 <button 
                     type="submit" 

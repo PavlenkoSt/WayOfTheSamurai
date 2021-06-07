@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import user from '../../../../assets/user.png'
 import s from './Message.module.scss'
 
@@ -8,7 +8,7 @@ type MessagePropsType = {
     message: string
 }
 
-const Message: FC<MessagePropsType> = ({ username, photo, message }) => {
+const Message: FC<MessagePropsType> = memo(({ username, photo, message }) => {
     return (
         <div className={s.main}>
             <div className={s.header}>
@@ -20,6 +20,6 @@ const Message: FC<MessagePropsType> = ({ username, photo, message }) => {
             </div>
         </div>
     )
-}
+})
 
 export default Message
