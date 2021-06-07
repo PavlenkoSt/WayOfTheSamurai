@@ -10,7 +10,7 @@ const Messages = memo(() => {
     const messages = useSelector(chatMessagesSelector)
 
     const messagesItems = messages.map((message, i) => <Message
-        key={i}
+        key={message.id || i}
         username={message.userName}
         photo={message.photo}
         message={message.message}

@@ -6,7 +6,7 @@ const SET_MESSAGES = 'SET_MESSAGES'
 const CHANGE_STATUS = 'CHANGE_STATUS'
 
 const initialValue = {
-    messages: [] as Array<ChatMessageType>,
+    messages: [] as Array<ChatMessageType & {id: string}>,
     status: 'pending' as StatusType
 }
 
@@ -20,7 +20,8 @@ const chatReducer = (state = initialValue, action: any): InitialValueType => {
         case SET_MESSAGES: {
             return {
                 ...state,
-                messages: [...state.messages, ...action.messages]
+                messages: [...state.messages, ...action.messages.map((m: any) => ({...m, id: Date.now()}))]
+                    .filter((m, i, arr) => i > arr.length - 100)
             }
         }
         case CHANGE_STATUS: {
