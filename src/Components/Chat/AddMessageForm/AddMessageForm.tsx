@@ -1,15 +1,17 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { FC } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { sendMessage } from '../../../Redux/chatReducer'
+import { chatStatusSelector } from '../../../Redux/selectors/chatSelectors'
 
 type AddMessageFormType = {
     message?: string
 }
 
 const AddMessageForm: FC = () => {
-
     const dispatch = useDispatch()
+
+    const status = useSelector(chatStatusSelector)
 
     return (
         <Formik
@@ -33,7 +35,7 @@ const AddMessageForm: FC = () => {
                 <ErrorMessage name="message" component="div" />
                 <button 
                     type="submit" 
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || status !== 'connect'}
                 >Отправить</button>
             </Form>
             )}
